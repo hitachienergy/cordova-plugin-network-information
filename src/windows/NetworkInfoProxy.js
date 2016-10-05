@@ -37,10 +37,8 @@ function getCurrrentConnectionType() {
     var conLevel = profile.getNetworkConnectivityLevel();
     var interfaceType = profile.networkAdapter.ianaInterfaceType;
 
-    // since we use this to detect whether we are online or offline we do check agains InternetAccess
-    // localAccess (airplane mode as an example) or constrainedInternetAccess mean there is no access to the internet available
     // https://msdn.microsoft.com/library/windows/apps/windows.networking.connectivity.networkconnectivitylevel.aspx
-    if (conLevel != Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess) {
+    if (conLevel === Windows.Networking.Connectivity.NetworkConnectivityLevel.none) {
         return Connection.NONE;
     }
 
